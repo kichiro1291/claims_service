@@ -1,0 +1,389 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8" />
+	<title>ПРЕТЕНЗИОННЫЕ ОБРАЩЕНИЯ</title> <!--Заполнять для каждой процедуры-->
+	<link rel="stylesheet" href="style.css" />
+	<script type="text/javascript" src="my_script.js"></script>
+	<script type="text/javascript" src="jquery-2.1.3.min.js"></script>
+	<script type="text/javascript">
+	
+/* Функция №1 показа основных шагов процедуры */
+$(document).ready(function(){
+	$('input.content_menu').change(function(){
+		var class_name = $(this).attr('class');
+		class_name = class_name.substring(class_name.indexOf('c_m_'), class_name.indexOf('c_m_') + 7).trim();
+		$('div#container div#step').hide(); // Скрывает все div-элементы в контейнере с id step
+		$('div#type_of_answer_0 div').hide(); //Скрывает все div-элементы с id type_of_answer_0
+		$('div#tsa div').hide(); //Скрывает все div-элементы с id tsa
+		$('div#container div.' + class_name).fadeIn().show();
+	});
+});
+/* Выбор действия в первом шаге (c_m_1)*/
+$(document).ready(function(){
+	$('input.typ_of_sr_menu').change(function(){
+		var class_name = $(this).attr('class');
+		class_name = class_name.substring(class_name.indexOf('tos_m_'), class_name.indexOf('tos_m_') + 7).trim();
+		$('div#type_of_answer_0 div').hide();
+		$('div#type_of_answer_0 div.' + class_name).fadeIn().show();
+	});
+});	
+/* Выбор действия в первом шаге (c_m_2)*/
+$(document).ready(function(){
+	$('input.typ_of_sr').change(function(){
+		var class_name = $(this).attr('class');
+		class_name = class_name.substring(class_name.indexOf('t_m_'), class_name.indexOf('t_m_') + 7).trim();
+		$('div#tsa div').hide();
+		$('div#tsa div.' + class_name).fadeIn().show();
+	});
+});
+/* Работа с чек-боксами шага №2*/
+  $(document).ready(function(){
+        $('input[type="radio"]').click(function(){
+        	$('div#tour').hide();
+        	     	
+            if($(this).attr("value")=="no_transfer"){
+            	$('div#ads').hide();
+                $(".no_transfer").show(); 
+            }
+            if($(this).attr("value")=="no_travel"){
+            	$('div#ads').hide();
+            	$('div#no_transfer').hide();
+                $(".no_travel").show();
+            }
+            if($(this).attr("value")=="no_visa"){
+            	$('div#ads').hide();
+            	$('div#no_transfer').hide();
+                $(".no_visa").show();
+            }
+            if($(this).attr("value")=="bad_info"){
+            	$('div#ads').hide();
+            	$('div#no_transfer').hide();
+                $(".bad_info").show();
+            }
+            if($(this).attr("value")=="change_time"){
+            	$('div#ads').hide();
+            	$('div#no_transfer').hide();
+                $(".change_time").show();
+            }
+            if($(this).attr("value")=="additional_services"){
+            	$('div#no_transfer').hide();
+                $(".additional_services").show();
+            }
+        });
+    });
+ 
+ /* Работа с radio шага №2. Тур*/
+  $(document).ready(function(){
+        $('input[type="radio"]').click(function(){
+        	$('div#transfer').hide();
+        	
+            if($(this).attr("value")=="transfer_on"){
+                $(".transfer_on").show();
+            }
+            if($(this).attr("value")=="transfer_off"){
+                $(".transfer_off").show();
+            }        
+        });
+    });
+ /* Работа с radio шага №2. Отсутствие доп услуг*/
+  $(document).ready(function(){
+        $('input[type="radio"]').click(function(){
+        	$('div#additional_service').hide();
+            if($(this).attr("value")=="additional_service_on"){
+                $(".additional_service_on").show();
+            }
+            if($(this).attr("value")=="additional_service_off"){
+                $(".additional_service_off").show();
+            }        
+        });
+    });    
+  /* Работа с radio шага №3. */
+  $(document).ready(function(){
+        $('input[type="radio"]').click(function(){
+        	$('div#radio_sr').hide();
+            if($(this).attr("value")=="done"){
+                $(".done").show();
+            }
+            if($(this).attr("value")=="other"){
+                $(".other").show();
+            }        
+        });
+    });    
+ /* Кнопка. Обновить страницу */   
+     $(document).ready(function() {
+            $('#refresh_form').click(function() {
+              location.reload();    //JavaScript функция перегрузки страницы
+            });
+        });   
+/* Модальное окно */
+$(document).ready(function(){
+			$('.popup .close_window, .overlay').click(function (){
+				$('.popup, .overlay').css({'opacity':'0', 'visibility':'hidden'});
+			});
+			$('a.open_window').click(function (e){
+				$('.popup, .overlay').css({'opacity':'1', 'visibility':'visible'});
+				e.preventDefault();
+			});
+		});	
+	</script>
+
+</head>	
+<body>
+<form name="f">
+	<table class="main_table" cellspacing="0" cellpadding="5">
+    <tr>
+        <td colspan="2" class="thead">ПРЕТЕНЗИОННЫЕ ОБРАЩЕНИЯ</td>
+    </tr>
+    <tr>
+        <td width="30%" class="thead">Параметры обращения</td>		
+        <td class="thead">Инструкция для сотрудника</td>
+    </tr>
+    <tr>
+        <td width="30%" class="main" valign="top">
+		<!-- Таблица параметров -->
+		
+				<div>
+ 				<input type="radio" name="param"  class="content_menu c_m_1"/>Регистрация обращений	
+ 				</div>
+			
+				<div>
+ 				<input type="radio" name="param" class="content_menu c_m_2"/>Обработка обращений
+ 				</div>
+				<div>
+ 				<input type="radio" name="param" class="content_menu c_m_3"/>Результат рассмотрения
+ 				</div>
+		</td>
+		<td class="main" valign="top">
+		<!-- Таблица шагов -->
+<div id="container">
+<div id="step" style="display:none" class="c_m_1  c_m_3">  <!--Общий шаг для  параметров №1, №3-->
+Уточнить ФИО звонящего. При необходимости осуществить поиск контакта в системе. <img src="https://onlinetours.bitrix24.ru/company/personal/user/77/files/lib/Процесс/Интерактивные%20процедуры/Основные%20элементы/note.png" width="15px" height="15px" alt="Подсказка" title="Поиск Клиента при входящем звонке осуществляется по ФИО и номеру мобильного телефона.
+Для более детального поиска можно уточнить дополнительные параметры, например e-mail."/><p>	
+<font color="red"><b>ВАЖНО!</b></font> Если поиск Клиента не дал результатов, то для корректной регистрации информации в системе, необходимо создать нового Клиента, указав максимум контактной информации.	
+<details><summary><font color="blue">Примечание</font></summary>Если Клиент зарегестрирован в системе и при этом звонит со своего контактного телефона, то при входящем звонке в правом верхнем углу экрана будет отображаться информация о звонящем.</details>
+<hr />
+</div>	
+			
+<div id="step" style="display:none" class="c_m_1" ><p /> <!-- Шаг №1. Регистрация претензионных обращений-->
+Выберите тематику обращения: <p />
+<input type="radio" name="param_1" class="typ_of_sr_menu tos_m_1"/>Клиентское обслуживание <br />
+<input type="radio" name="param_1" class="typ_of_sr_menu tos_m_2"/>Оплата<br />
+<input type="radio" name="param_1" class="typ_of_sr_menu tos_m_3"/>Возврат<br />
+<input type="radio" name="param_1" class="typ_of_sr_menu tos_m_4"/>Тур<br />
+<hr />
+</div>				
+<div id="type_of_answer_0"> <!-- Дополнительные блоки к шагу №1 -->
+		<div style="display:none " class="tos_m_1 tos_m_2 tos_m_3 tos_m_4">
+		<font color="red"><b>ВАЖНО!</b> </font>Если клиент желает оформить претензию не по телефону (e-mail, почта РФ), либо клиент желает направить какие-либо документы в компанию, необходимые для подтверждения претензионного  обращения, следует указывать реквизиты: <p>
+		<b>e-mail:</b><a href="#"> service@onlinetours.ru</a><br>
+		<b>Офис оформления (письменная претензия):</b> 119034, г. Москва, ул. Тимура Фрунзе, дом 20, стр 3, 1 этаж <br>
+		<b>Почта РФ:</b> 107078, г. Москва, ул. Новорязанская, д.18, стр.13, эт.3, оф.5 <br><hr />			  
+		</div>	
+		<div style="display:none " class="tos_m_1"> <!--Клиентское обслуживание (шаг №1)-->
+Зарегистрировать обращение:<br /> 
+<font color="red"><b>Тип:</b></font>"Претензия"<br />
+<font color="red"><b>Тема:</b></font>"Клиентское обслуживание"<p>
+<ol>Уточнить и внести информацию в поле "Описание" обращения:
+<li>Номер договора (id заявки)</li>
+<li>Дату и время разговора</li>
+<li>Имя сотрудника</li>
+<li>Суть претензии (подробно)</li>	
+</ol>
+<font color="blue"><b>Сообщить:</b></font>"Ваше обращение обязательно будет рассмотрено, пожалуйста, ожидайте, в течение <a alt="Срок рассмотрения" title="Указан максимальный срок рассмотрения претензии. В некоторых ситуациях (запрос информации у ТО) срок может быть увеличен."><font color="blue"> 10-ти рабочих дней </a></font> с Вами свяжется специалист и сообщит информацию о результате рассмотрения."	
+<p>Сохранить обращение (при необходимости назначить его на группу Service)</p>		
+		</div>
+		<div style="display:none " class="tos_m_2"> <!--Оплата (шаг №1)-->
+Зарегистрировать обращение:<br /> 
+<font color="red"><b>Тип:</b></font>"Претензия"<br />
+<font color="red"><b>Тема:</b></font>"Оплата"<p>
+<ol>Уточнить и внести информацию в поле "Описание" обращения:
+<li>Номер договора (id заявки)</li>
+<li>Способ оплаты</li>
+<li>Суть претензии (подробно)</li>	
+</ol>
+<font color="blue"><b>Сообщить:</b></font>"Ваше обращение обязательно будет рассмотрено, пожалуйста, ожидайте, в течение <a alt="Срок рассмотрения" title="Указан максимальный срок рассмотрения претензии. В некоторых ситуациях (запрос информации у ТО) срок может быть увеличен."><font color="blue"> 10-ти рабочих дней </a></font> с Вами свяжется специалист и сообщит информацию о результате рассмотрения."	
+<p>Сохранить обращение (при необходимости назначить его на группу Service)</p>	
+		</div>
+		<div style="display:none " class="tos_m_3"> <!--Возврат (шаг №1)-->
+Зарегистрировать обращение:<br /> 
+<font color="red"><b>Тип:</b></font>"Претензия"<br />
+<font color="red"><b>Тема:</b></font>"Возврат"
+<font color="red"><b>Подтема:</b></font><указать при необходимости><p>
+<ol>Уточнить и внести информацию в поле "Описание" обращения:
+<li>Номер договора (id заявки)</li>
+<li>Суть претензии (подробно)</li>	
+</ol>
+<font color="blue"><b>Сообщить:</b></font>"Ваше обращение обязательно будет рассмотрено, пожалуйста, ожидайте, в течение <a alt="Срок рассмотрения" title="Указан максимальный срок рассмотрения претензии. В некоторых ситуациях (запрос информации у ТО) срок может быть увеличен."><font color="blue"> 10-ти рабочих дней </a></font> с Вами свяжется специалист и сообщит информацию о результате рассмотрения."	
+<p>Сохранить обращение (при необходимости назначить его на группу Service)</p>		
+		</div>
+		<div style="display:none " class="tos_m_4"> <!--Тур (шаг №1)-->
+Зарегистрировать обращение:<br /> 
+<font color="red"><b>Тип:</b></font>"Претензия"<br />
+<font color="red"><b>Тема:</b></font>"Тур"
+<font color="red"><b>Подтема:</b></font><указать в зависимости от обращения клиента><p>
+<ol>Уточнить и внести информацию в поле "Описание" обращения:
+<li>Номер договора (id заявки)</li>
+<li>Суть претензии (подробно)</li>	
+</ol>
+<font color="blue"><b>Сообщить:</b></font>"Ваше обращение обязательно будет рассмотрено, пожалуйста, ожидайте, в течение <a alt="Срок рассмотрения" title="Указан максимальный срок рассмотрения претензии. В некоторых ситуациях (запрос информации у ТО) срок может быть увеличен."><font color="blue"> 10-ти рабочих дней </a></font> с Вами свяжется специалист и сообщит информацию о результате рассмотрения."	
+<p>Сохранить обращение (при необходимости назначить его на группу Service)</p>	
+		</div>
+</div>
+<div id="step" style="display:none" class="c_m_2">	<!-- Шаг №2. Обработка претензионных обращений-->
+Выберите тематику обращения: <p />
+<input type="radio" name="param_2" class="typ_of_sr t_m_1"/>Клиентское обслуживание <br />
+<input type="radio" name="param_2" class="typ_of_sr t_m_2"/>Оплата<br />
+<input type="radio" name="param_2" class="typ_of_sr t_m_3"/>Возврат<br />
+<input type="radio" name="param_2" class="typ_of_sr t_m_4"/>Тур<br />
+<hr />
+</div>
+<div id="tsa"> <!-- Дополнительные блоки к шагу №2 -->
+		<div style="display:none " class="t_m_1" id=""> <!--Клиентское обслуживание (шаг №2)-->
+Завершив диалог с клиентом/получив в работу переданное обращение, необходимо:
+<ol>
+<li>Проанализировать обращение клиента </li>	
+<li>На основе имеющихся данных вынести решение по рассмотрению претензии. Результат указать в поле "Решение" обращения.</li>
+<li>Оповестить клиента по результатм рассмотрения его претензии.</li>
+<li>Закрыть обращение.</li>	
+</ol>
+<details>
+<summary>
+<font color="red"><b>ВАЖНО!</b></font> 	
+</summary>
+Если для принятия решения необходима юридическая консультация (помощь), то жалобу необходимо переслать на почтовый адрес <a href="#"> law@onlinetours.ru </a> и <a href="#"> aishonin@onlinetours.ru </a> (например: Клиент грозится судом). Ответ приходит по почте не позднее, чем в течение суток.	
+</details> <br />
+<font color="blue">Примечание:</font>В случае, если системных данных не достаточно для принятия однозначного решения необходимо направить письменный запрос в контроль качества.<p />
+<b>Форма письма:</b>
+<b>Кому:</b><a href="#">kk@onlinetours.ru</a><br />
+<b>Копия:</b><a href="#">opopova@onlinetours.ru</a><br />
+<b>Тема:</b> Претензия на клиентское обслуживание<br />
+<b>Содержание:</b>Суть претензии Клиента<br />
+		</div>
+		<div style="display:none " class="t_m_2 t_m_3"> <!--Оплата (шаг №2)--> <!--Возврат (шаг №2)-->
+Завершив диалог с клиентом/получив в работу переданное обращение, необходимо:
+<ol>
+<li>Проанализировать обращение клиента </li>	
+<li>На основе имеющихся данных вынести решение по рассмотрению претензии. Результат указать в поле "Решение" обращения.</li>
+<li>Оповестить клиента по результатм рассмотрения его претензии.</li>
+<li>Закрыть обращение.</li>	
+</ol>
+<details>
+<summary>
+<font color="red"><b>ВАЖНО!</b></font> 	
+</summary>
+Если для принятия решения необходима юридическая консультация (помощь), то жалобу необходимо переслать на почтовый адрес <a href="#"> law@onlinetours.ru </a> и <a href="#"> aishonin@onlinetours.ru </a> (например: Клиент грозится судом). Ответ приходит по почте не позднее, чем в течение суток.	
+</details> <br />
+<font color="blue">Примечание:</font>В случае, если системных данных не достаточно для принятия однозначного решения необходимо направить письменный запрос в  в бухгалтерию.<p />
+<b>Форма письма:</b><br />
+<b>Кому:</b><a href="#">buh@onlinetours.ru</a><br />
+<b>Копия:</b><a href="#">opopova@onlinetours.ru</a><br />
+<b>Тема:</b> Претензия<br />
+<b>Содержание:</b>Суть претензии Клиента<br />
+		</div>
+		<div style="display:none " class="t_m_4"> <!--Тур (шаг №2)-->
+Завершив диалог с клиентом/получив в работу переданное обращение, необходимо проанализировать обращение клиента:<br />
+<input type="radio" value="no_transfer" name="tour">1.Отсутствие трансфера <br />
+<input type="radio" value="no_travel" name="tour">2.Отказ от поездки <br />
+<input type="radio" value="no_visa" name="tour">3.Отказ в визе <br />
+<input type="radio" value="bad_info" name="tour">4.Дезинформация по отелю <br />
+<input type="radio" value="change_time" name="tour" >5.Перенос времени рейса <br />
+<input type="radio" value="additional_services" name="tour">6.Отсутствие доп.услуг <hr /><br />
+<div class="no_transfer" style="display:none" id="no_transfer" > <!--Отсутствие трансфера-->
+Перейти в заявку и проверить наличие услуги "Трансфер" в субблоке "Дополнительные услуги" <br />
+<input type="radio" name="transfer" value="transfer_off" />Доп. услуга не активна <br />
+<input type="radio" name="transfer" value="transfer_on" />Доп. услуга активна <hr />
+	<div id="transfer" class="transfer_off" style="display:none">Направить запрос в контроль качества с просьбой прослушать звонок по указанной заявке.
+	<hr />
+На основе имеющихся данных вынести решение по рассмотрению претензии. Результат указать в поле "Решение" обращения.<br />
+Оповестить клиента по результатам рассмотрения его претензии.<br />
+Закрыть обращение.
+	</div>
+	<div id="transfer" class="transfer_on" style="display:none">Перейти в личный кабинет ТО и проверить наличие трансфера в туре:
+		<ol>
+		<li> Если транфер включен в тур, то направляем запрос в ТО для выяснения причин.
+		<li> Если транфер <b> не</b> включен в тур, то необходимо решить возмещению (в зависимости от способа оплаты)	
+		</ol> <hr />
+На основе имеющихся данных вынести решение по рассмотрению претензии. Результат указать в поле "Решение" обращения.<br />
+Оповестить клиента по результатам рассмотрения его претензии.<br />
+Закрыть обращение.
+</div>
+
+</div>
+<div class="no_travel" style="display:none" id="tour"> <!--Отказ от поездки-->
+Написать запрос ТО на минимизацию расходов. Максимальный срок возращения 45 дней.
+</div>
+<div class="no_visa" style="display:none" id="tour"> <!--Отказ в визе-->
+Написать запрос ТО на минимизацию расходов. Максимальный срок возращения 45 дней.
+</div>
+<div class="bad_info" style="display:none" id="tour"> <!--Дезинформация по отелю-->
+Направить запрос в контроль качества с просьбой прослушать звонок по указанной заявке. <hr />
+На основе имеющихся данных вынести решение по рассмотрению претензии. Результат указать в поле "Решение" обращения.<br />
+Оповестить клиента по результатам рассмотрения его претензии.<br />
+Закрыть обращение.
+</div>
+<div class="change_time" style="display:none" id="tour"><!--Перенос времени рейса-->
+Проверить информацию по заявке. Проверсти соответствующую консультацию в процессе разговора с клиентом.  <hr />
+На основе имеющихся данных вынести решение по рассмотрению претензии. Результат указать в поле "Решение" обращения.<br />
+Оповестить клиента по результатам рассмотрения его претензии.<br />
+Закрыть обращение.
+</div>
+<div class="additional_services" style="display:none" id="ads" > <!--Отсутствие доп.услуг-->
+Перейти в заявку и проверить наличие услуг(-и) в субблоке "Дополнительные услуги" <br />
+<input type="radio" name="additional_service" value="additional_service_off" />Доп. услуга отсутствует <br />
+<input type="radio" name="additional_service" value="additional_service_on" />Доп. услуга включена в заявку <hr />
+<div id="additional_service" class="additional_service_off" style="display:none">Направить запрос в контроль качества с просьбой прослушать звонок по указанной заявке.</div>
+	<div id="additional_service" class="additional_service_on" style="display:none">Перейти в личный кабинет ТО и проверить наличие услуг(-и) в туре:
+		<ol>
+		<li> Если услуга(-и) включен(-ы) в тур, то направляем запрос в ТО для выяснения причин.
+		<li> Если услуга(-и) <b> не</b> включен(-ы) в тур, то необходимо решить возмещению (в зависимости от способа оплаты)	
+		</ol>
+</div>
+		</div>
+</div>	
+</div>
+
+<div id="step" style="display:none" class="c_m_3"> <!-- Шаг №3. Результат рассмотрения претензии-->
+Осуществить  поиск обращения с типом "Претензия". Статус обращения: <p>
+<input name="radio_sr" type="radio" value="done" />"Закрыто" <br />
+<input name="radio_sr" type="radio" value="other" /> "В работе/назначено" <hr />
+<div id="radio_sr" style="display:none" class="done">
+Сообщить клиенту информацию, указанную в поле "Решение". <p>
+Зарегистрировать обращение:<br /> 
+<font color="red"><b>Тип:</b></font>"Претензия"<br />
+<font color="red"><b>Тема:</b></font>"Возврат" <br />
+<font color="red"><b>Подтема:</b></font><в зависимости от результата рассмотрения><p>
+"Закрыть" обращение.	
+</div>
+<div id="radio_sr" style="display:none" class="other">
+Зарегистрировать обращение:<br /> 
+<font color="red"><b>Тип:</b></font>"Претензия"<br />
+<font color="red"><b>Тема:</b></font>"Возврат" <br />
+<font color="red"><b>Подтема:</b></font>"Срок истек/Срок не истек"<p>
+В описании обращения указать номер исходного запроса <br />	
+"Передать" ответственному специалисту. <hr />
+<font color="blue"><b>Сообщить:</b></font>  В некоторый случаях для принятия решения требуется времени больше обычного. Пожалуйста, ожидайте, в бижайшее время специалист с Вами свяжется и сообщит информацию о результате рассмотрения. 
+</div>
+</div>
+</div>			
+		</td>
+    </tr>
+<!-- Блок с ссылками -->    
+    <tr>
+        <td width="30%" class="thead">
+		<input type="button" id="refresh_form" value="Сбросить параметры формы"/>
+		</td>
+		<td class="thead">
+<a class="open_window" href="#">Передача обращения (пример заполнения)</a>
+		</td>
+    </tr>
+</table>
+</form>
+<!--Скрытые элементы (окна) -->
+<div class="overlay"></div>
+<div class="popup">
+<img src="change_sr.png" />	
+</ol>
+</div>
+</body>
+</html>
